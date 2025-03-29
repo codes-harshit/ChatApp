@@ -10,9 +10,11 @@ import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
 import { useAuthStore } from "./store/useAuthStore";
 import { Toaster } from "react-hot-toast";
+import { useThemeStore } from "./store/useThemeStore";
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+  const { theme } = useThemeStore();
 
   useEffect(() => {
     checkAuth();
@@ -28,7 +30,7 @@ const App = () => {
     );
   }
   return (
-    <div>
+    <div className="overflow-auto" data-theme={theme}>
       <Navbar />
       <Routes>
         <Route
