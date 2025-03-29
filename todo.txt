@@ -1,0 +1,4 @@
+1. implement file uploading using Multer.
+2. Segregate the light and the dark theme.
+3. Add the user profile picture in the Navbar with the profile button.
+4. Make the Chats to a different route, so that when you refresh the chat that is selected is open.
