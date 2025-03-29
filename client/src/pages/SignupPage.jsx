@@ -17,10 +17,8 @@ import { Link } from "react-router-dom";
 import { User, Mail, Lock } from "lucide-react";
 import Input from "../components/Input";
 
-console.log(User, Mail, Lock);
-
 const SignupPage = () => {
-  const [showPassword, setShowPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -54,14 +52,21 @@ const SignupPage = () => {
     return true;
   };
 
-  const handleFormData = (e) => {
+  const handleFormData = async (e) => {
     e.preventDefault();
-    console.log("clicked");
+    // console.log("clicked");
     const success = validateForm();
-    console.log(success); // Should now log 'true' or 'false'
+    // console.log(success); // Should now log 'true' or 'false'
+
     if (success) {
-      toast.success("Signup Successful");
+      await signup(formData);
     }
+
+    setFormData({
+      fullName: "",
+      email: "",
+      password: "",
+    });
   };
 
   return (
