@@ -8,7 +8,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://stellar-squirrel-2ae7e2.netlify.app/",
+    origin: "https://stellar-squirrel-2ae7e2.netlify.app",
   },
 });
 
