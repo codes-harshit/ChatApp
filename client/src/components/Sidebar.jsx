@@ -1,19 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useChatStore } from "../store/useChatStore";
 import SideBarSkeleton from "./Skeletons/SideBarSkeleton";
 import { Users } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
 
 const Sidebar = () => {
-  const {
-    getUsers,
-    users: filteredUsers,
-    selectedUser,
-    setSelectedUser,
-    isUserLoading,
-  } = useChatStore();
+  const [showOnlineOnly, setShowOnlineOnly] = useState(false);
+  const { getUsers, users, selectedUser, setSelectedUser, isUserLoading } =
+    useChatStore();
 
   const { onlineUsers } = useAuthStore();
+  // console.log(onlineUsers);
 
   useEffect(() => {
     getUsers();
@@ -27,6 +24,10 @@ const Sidebar = () => {
     setSelectedUser(user);
   };
 
+  const filteredUsers = showOnlineOnly
+    ? users.filter((user) => onlineUsers.includes(user._id))
+    : users;
+
   if (isUserLoading) return <SideBarSkeleton />;
 
   return (
@@ -37,12 +38,12 @@ const Sidebar = () => {
           <span className="font-medium hidden lg:block">Contacts</span>
         </div>
         {/* TODO: Online filter toggle */}
-        {/* <div className="mt-3 hidden lg:flex items-center gap-2">
+        <div className="mt-3 hidden lg:flex items-center gap-2">
           <label className="cursor-pointer flex items-center gap-2">
             <input
               type="checkbox"
-              // checked={showOnlineOnly}
-              // onChange={(e) => setShowOnlineOnly(e.target.checked)}
+              checked={showOnlineOnly}
+              onChange={(e) => setShowOnlineOnly(e.target.checked)}
               className="checkbox checkbox-sm"
             />
             <span className="text-sm">Show online only</span>
@@ -50,7 +51,7 @@ const Sidebar = () => {
           <span className="text-xs text-zinc-500">
             ({onlineUsers.length - 1} online)
           </span>
-        </div> */}
+        </div>
       </div>
 
       <div className="overflow-y-auto w-full py-3">

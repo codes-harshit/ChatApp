@@ -6,9 +6,9 @@ import cookieParser from "cookie-parser";
 import { connectDB } from "./config/connectDB.js";
 import authRoutes from "./routes/auth.routes.js";
 import messageRoutes from "./routes/message.routes.js";
+import { app, server } from "./lib/socket.io.js";
 
 dotenv.config();
-const app = express();
 
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
@@ -25,7 +25,7 @@ app.use("/api/messages", messageRoutes);
 
 const port = process.env.PORT || 5001;
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server running on port ${port}`);
   connectDB();
 });
