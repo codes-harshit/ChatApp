@@ -29,7 +29,7 @@ export const useChatStore = create((set, get) => ({
 
   getMessages: async (userToChatId) => {
     set({ isMessageLoading: true });
-
+    // console.log("Is messageLoading: ", get().isMessageLoading);
     try {
       const res = await axiosApi.get(`/messages/${userToChatId}`);
       set({ messages: res.data.messages });
@@ -38,6 +38,7 @@ export const useChatStore = create((set, get) => ({
       toast.error(error.response.data.message);
     } finally {
       set({ isMessageLoading: false });
+      // console.log("Is messageLoading: ", get().isMessageLoading);
     }
   },
 

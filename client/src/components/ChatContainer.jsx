@@ -13,7 +13,7 @@ const ChatContainer = () => {
   const {
     messages,
     getMessages,
-    isMessagesLoading,
+    isMessageLoading,
     selectedUser,
     subscribeToMessages,
     unSubscribeToMessages,
@@ -21,7 +21,7 @@ const ChatContainer = () => {
 
   useEffect(() => {
     getMessages(selectedUser._id);
-
+    console.log("ismessageLoading: ", isMessageLoading);
     subscribeToMessages();
 
     return () => unSubscribeToMessages();
@@ -39,7 +39,8 @@ const ChatContainer = () => {
     }
   }, [messages]);
 
-  if (isMessagesLoading) {
+  if (isMessageLoading) {
+    console.log("Coming in this if.");
     return (
       <div className="flex-1 flex flex-col overflow-auto">
         <ChatHeader />
