@@ -1,10 +1,10 @@
 import React from "react";
 
-const Input = ({ icon: Icon, ...props }) => {
+const Input = ({ icon: Icon, label, ...props }) => {
   return (
     <div className="form-control">
       <label className="label">
-        <span className="label-text font-medium">Full Name</span>
+        <span className="label-text font-medium">{label}</span>
       </label>
       <div className="relative">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">

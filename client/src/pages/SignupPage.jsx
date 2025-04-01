@@ -92,6 +92,7 @@ const SignupPage = () => {
 
           <form onSubmit={handleFormData} className="space-y-6">
             <Input
+              label={"Full Name"}
               icon={User}
               type="text"
               className={`input input-bordered w-full pl-10`}
@@ -104,6 +105,7 @@ const SignupPage = () => {
 
             <Input
               icon={Mail}
+              label={"Email"}
               type="email"
               className={`input input-bordered w-full pl-10`}
               placeholder="you@example.com"
